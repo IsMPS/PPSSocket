@@ -18,29 +18,27 @@ public class ServidorHilo extends Thread {
 	public void run() {
 		// Mientras haya mensajes
 		String peticion = null;
-		do {
-			peticion = conexion.recibir();
+			peticion = conexion.recibirString();
 			File archivo = new File(peticion);
 			byte[] total;
 			// Si se pudo recibir (si la conexión no se ha cerrado)
 			if (peticion != null) {
 				if (archivo.exists()) {
-				// lee el fichero en bytes
+					// lee el fichero en bytes
 					byte[] respuesta = new String("OK\n\r").getBytes();
-				byte[] texto = null;
-				try {
-					texto = Files.readAllBytes(archivo.toPath());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				total = new byte[respuesta.length + texto.length];
-		        System.arraycopy(respuesta, 0, total, 0, respuesta.length);
-		        System.arraycopy(texto, 0, total, respuesta.length, texto.length);
-			} else
-				total = new String("ERR\n").getBytes();
+					byte[] texto = null;
+					try {
+						texto = Files.readAllBytes(archivo.toPath());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					total = new byte[respuesta.length + texto.length];
+					System.arraycopy(respuesta, 0, total, 0, respuesta.length);
+					System.arraycopy(texto, 0, total, respuesta.length, texto.length);
+				} else
+					total = new String("ERR\n\r").getBytes();
 				// Y lo enviamos como respuesta
-				conexion.enviar(total);
+				conexion.enviarByte(total);
 			}
-		} while (peticion != null);
 	}
 }

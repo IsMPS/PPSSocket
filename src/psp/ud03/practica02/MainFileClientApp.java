@@ -12,7 +12,7 @@ public class MainFileClientApp {
 
 	private static final String DEFAULT_HOST = "localhost";
 	private static final int DEFAULT_PORT = 4321;
-	private static final String RUTA_DEFAULT = "archivos/";
+	private static final String RUTA_DEFAULT = "ficheros/";
 
 	public static void main(String[] args) {
 
@@ -39,12 +39,11 @@ public class MainFileClientApp {
 			if (mensaje.length() > 0) {
 				// Lo envía
 				cliente.enviar(mensaje);
+
 				// Recibe la respuesta
 				byte[] respuesta = cliente.recibir();
-
 				byte[] accion = new byte[4];
 				System.arraycopy(respuesta, 0, accion, 0, 4);
-
 				if (new String(accion).equals("OK\n\r")) {
 					byte[] texto = new byte[respuesta.length - 4];
 					System.arraycopy(respuesta, 4, texto, 0, respuesta.length - 4);
@@ -69,7 +68,6 @@ public class MainFileClientApp {
 
 	public static void escribirFichero(File existenteArchivo, byte[] texto) {
 		File newArchivo = new File(RUTA_DEFAULT + existenteArchivo.getName());
-
 		try {
 			if (!newArchivo.exists()) {
 				newArchivo.createNewFile();

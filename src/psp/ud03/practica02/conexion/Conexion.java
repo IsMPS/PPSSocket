@@ -2,11 +2,11 @@ package psp.ud03.practica02.conexion;
 
 public interface Conexion {
 
-	public void enviar(byte[] texto);
+	public void enviarByte(byte[] texto);
 	
 	public void enviarString(String texto);
 
-	public String recibir();
+	public String recibirString();
 	
 	public byte[] recibirByte();
 

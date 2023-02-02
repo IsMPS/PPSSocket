@@ -17,15 +17,16 @@ public class ConexionSocket implements Conexion {
 		this.socket = socket;
 	}
 
-	public void enviar(byte[] mensaje) {
+	public void enviarByte(byte[] mensaje) {
 		// Si el socket está conectado
 		if (socket.isConnected()) {
 			try {
-				System.out.println("ccccc");
 				DataOutputStream writer = new DataOutputStream(socket.getOutputStream());
 				// Enviamos el mensaje por el socket
+				writer.writeInt(mensaje.length);
 				writer.write(mensaje);
 				writer.flush();
+
 			} catch (IOException e) {
 				// En caso de cualquier error de comunicaciones
 				// Lanzamos una excepción hacia arriba
@@ -37,13 +38,12 @@ public class ConexionSocket implements Conexion {
 		}
 	}
 
-	public String recibir() {
+	public String recibirString() {
 		// Si el socket está conectado
 		if (socket.isConnected()) {
 			// Intenta leer del socket (vamos a usar un Reader porque usamos texto)
 			// Si se recibieran datos binarios habría que usar directamente el stream
 			try {
-				System.out.println("bbbbbbbbbbb");
 				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				// Leemos el resultado
 				String resultado = reader.readLine();
@@ -71,7 +71,6 @@ public class ConexionSocket implements Conexion {
 		// Si el socket está conectado
 		if (socket.isConnected()) {
 			try {
-				System.out.println("aaaaaaaaaa");
 				PrintWriter writer = new PrintWriter(socket.getOutputStream());
 				// Enviamos el mensaje por el socket
 				writer.println(texto);
@@ -93,7 +92,7 @@ public class ConexionSocket implements Conexion {
 			// Intenta leer del socket (vamos a usar un Reader porque usamos texto)
 			// Si se recibieran datos binarios habría que usar directamente el stream
 			try {
-				DataInputStream reader = new DataInputStream(socket.getInputStream());;
+				DataInputStream reader = new DataInputStream(socket.getInputStream());
 				// Leemos el resultado
 				byte[] resultado = new byte[reader.readInt()];
 				reader.readFully(resultado);
