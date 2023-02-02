@@ -1,5 +1,6 @@
 package psp.ud03.practica02;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import psp.ud03.practica02.resources.ConexionException;
@@ -26,20 +27,19 @@ public class MainFileClientApp {
 	      // Mientras no se introduzca la cadena vacía
 	      String mensaje;
 	      Scanner sc = new Scanner(System.in);
-	      do {
+
 	        // Lee el mensaje desde teclado
-	        System.out.print("Introduzca el mensaje a enviar (vacio para acabar): ");
+	        System.out.print("Introduzca ruta de fichero: ");
 	        mensaje = sc.nextLine();
 	        // Si no es el mensaje de fin
 	        if (mensaje.length() > 0) {
 	          // Lo envía
 	          cliente.enviar(mensaje);
 	          // Recibe la respuesta
-	          String respuesta = cliente.recibir();
+	          byte[] respuesta = cliente.recibir();
 	          // Y la imprime
 	          System.out.println("Respuesta recibida: " + respuesta);
 	        }
-	      } while (mensaje.length() > 0);
 	      // Terminamos el cliente (la conexion)
 	      cliente.cerrar();
 	      // Y el scanner
@@ -55,4 +55,9 @@ public class MainFileClientApp {
 	    }
 	  }
 
+	  
+	  public String[] bytesToString(byte[] respuesta) {
+		  //respuesta
+		return null;		  
+	  }
 }

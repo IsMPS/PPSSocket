@@ -23,11 +23,11 @@ public class Cliente {
   }
   
   public void enviar(String msg) {
-    conexion.enviar(msg);
+    conexion.enviarString(msg);
   }
   
-  public String recibir() {
-    return conexion.recibir();
+  public byte[] recibir() {
+    return conexion.recibirByte();
   }
 
   public void cerrar() {
