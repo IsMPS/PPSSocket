@@ -1,10 +1,10 @@
-package psp.ud03.practica02.resources.client;
+package psp.ud03.practica02.conexion.client;
 
 import java.net.Socket;
 
-import psp.ud03.practica02.resources.Conexion;
-import psp.ud03.practica02.resources.ConexionException;
-import psp.ud03.practica02.resources.ConexionSocket;
+import psp.ud03.practica02.conexion.Conexion;
+import psp.ud03.practica02.conexion.ConexionException;
+import psp.ud03.practica02.conexion.ConexionSocket;
 
 
 public class Cliente {

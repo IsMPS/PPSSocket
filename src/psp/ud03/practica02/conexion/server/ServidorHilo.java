@@ -1,10 +1,10 @@
-package psp.ud03.practica02.resources.server;
+package psp.ud03.practica02.conexion.server;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import psp.ud03.practica02.resources.Conexion;
+import psp.ud03.practica02.conexion.Conexion;
 
 public class ServidorHilo extends Thread {
 
@@ -26,7 +26,7 @@ public class ServidorHilo extends Thread {
 			if (peticion != null) {
 				if (archivo.exists()) {
 				// lee el fichero en bytes
-					byte[] respuesta = new String("OK\\n").getBytes();
+					byte[] respuesta = new String("OK\n\r").getBytes();
 				byte[] texto = null;
 				try {
 					texto = Files.readAllBytes(archivo.toPath());
@@ -37,7 +37,7 @@ public class ServidorHilo extends Thread {
 		        System.arraycopy(respuesta, 0, total, 0, respuesta.length);
 		        System.arraycopy(texto, 0, total, respuesta.length, texto.length);
 			} else
-				total = new String("ERR").getBytes();
+				total = new String("ERR\n").getBytes();
 				// Y lo enviamos como respuesta
 				conexion.enviar(total);
 			}

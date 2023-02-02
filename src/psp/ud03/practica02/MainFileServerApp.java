@@ -1,8 +1,8 @@
 package psp.ud03.practica02;
 
-import psp.ud03.practica02.resources.Conexion;
-import psp.ud03.practica02.resources.server.Servidor;
-import psp.ud03.practica02.resources.server.ServidorHilo;
+import psp.ud03.practica02.conexion.Conexion;
+import psp.ud03.practica02.conexion.server.Servidor;
+import psp.ud03.practica02.conexion.server.ServidorHilo;
 
 public class MainFileServerApp {
 

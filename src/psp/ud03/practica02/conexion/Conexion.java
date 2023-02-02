@@ -1,4 +1,4 @@
-package psp.ud03.practica02.resources;
+package psp.ud03.practica02.conexion;
 
 public interface Conexion {
 

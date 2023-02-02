@@ -1,4 +1,4 @@
-package psp.ud03.practica02.resources;
+package psp.ud03.practica02.conexion;
 
 
 import java.io.BufferedReader;
@@ -21,6 +21,7 @@ public class ConexionSocket implements Conexion {
 		// Si el socket está conectado
 		if (socket.isConnected()) {
 			try {
+				System.out.println("ccccc");
 				DataOutputStream writer = new DataOutputStream(socket.getOutputStream());
 				// Enviamos el mensaje por el socket
 				writer.write(mensaje);
@@ -42,6 +43,7 @@ public class ConexionSocket implements Conexion {
 			// Intenta leer del socket (vamos a usar un Reader porque usamos texto)
 			// Si se recibieran datos binarios habría que usar directamente el stream
 			try {
+				System.out.println("bbbbbbbbbbb");
 				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				// Leemos el resultado
 				String resultado = reader.readLine();
@@ -69,6 +71,7 @@ public class ConexionSocket implements Conexion {
 		// Si el socket está conectado
 		if (socket.isConnected()) {
 			try {
+				System.out.println("aaaaaaaaaa");
 				PrintWriter writer = new PrintWriter(socket.getOutputStream());
 				// Enviamos el mensaje por el socket
 				writer.println(texto);
